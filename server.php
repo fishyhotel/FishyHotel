@@ -25,7 +25,7 @@
     }
 
     # generate user unique id
-    $id = base64_encode(substr($pd, 0, 4) . pack('N', ip2long($_SERVER['REMOTE_ADDR'])));
+    $id = str_replace('/', '', base64_encode(substr($pd, 0, 4) . pack('N', ip2long($_SERVER['REMOTE_ADDR']))));
 
     # store user data
     file_put_contents("/dev/shm/fishy/" . $id, $pd, LOCK_EX);
